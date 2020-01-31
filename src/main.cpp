@@ -109,6 +109,7 @@ bool try_read_line(Stream &stream,
                 if (buffer_index == 0) {
                     continue;
                 } else {
+                    buffer[buffer_index] = '\0';
                     if (end) {
                         *end = &buffer[buffer_index];
                     }
@@ -123,9 +124,9 @@ bool try_read_line(Stream &stream,
         }
     }
 
+    buffer[buffer_index] = '\0';
     if (end) {
         *end = &buffer[buffer_index];
     }
-    buffer[buffer_index] = '\0';
     return false;
 }
