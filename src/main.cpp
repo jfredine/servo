@@ -15,10 +15,9 @@ void setup() {
 void loop() {
     static int pos = 0;
     static char buffer[BUFFER_SIZE];
-    int new_pos = pos;
-    char *end;
 
     // get input which may take multiple loops or have buffer overflow errors
+    char *end;
     char *old_end = &buffer[strlen(buffer)];
     bool complete = try_read_line(Serial, buffer, BUFFER_SIZE, &end);
     if (end != old_end) {
@@ -41,6 +40,7 @@ void loop() {
     }
 
     // complete line of input to process
+    int new_pos = pos;
     char *cp;
     int i = strtoul(buffer, &cp, 0);
     if (cp != end) {
